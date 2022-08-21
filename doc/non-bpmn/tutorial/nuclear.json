@@ -1,7 +1,7 @@
 {
     "task_specs": {
         "Start": {
-            "class": "SpiffWorkflow.specs.StartTask.StartTask",
+            "class": "py_bpmn_engine.specs.StartTask.StartTask",
 	    "id" : 1,
             "manual": false,
             "outputs": [
@@ -9,7 +9,7 @@
             ]
         },
         "general": {
-            "class": "SpiffWorkflow.specs.ExclusiveChoice.ExclusiveChoice",
+            "class": "py_bpmn_engine.specs.ExclusiveChoice.ExclusiveChoice",
             "name": "general",
 	    "id" : 2,
             "manual": true,
@@ -25,7 +25,7 @@
             "cond_task_specs": [
                 [
                     [
-                        "SpiffWorkflow.operators.Equal",
+                        "py_bpmn_engine.operators.Equal",
                         [
                             [
                                 "Attrib",
@@ -42,7 +42,7 @@
             ]
         },
         "president": {
-            "class": "SpiffWorkflow.specs.ExclusiveChoice.ExclusiveChoice",
+            "class": "py_bpmn_engine.specs.ExclusiveChoice.ExclusiveChoice",
             "name": "president",
 	    "id" : 3,
             "manual": true,
@@ -58,7 +58,7 @@
             "cond_task_specs": [
                 [
                     [
-                        "SpiffWorkflow.operators.Equal",
+                        "py_bpmn_engine.operators.Equal",
                         [
                             [
                                 "Attrib",
@@ -76,7 +76,7 @@
         },
         "nuclear_strike": {
 	    "id" : 4,
-            "class": "SpiffWorkflow.specs.Simple.Simple",
+            "class": "py_bpmn_engine.specs.Simple.Simple",
             "name": "nuclear_strike",
             "inputs": [
                 3
@@ -84,7 +84,7 @@
         },
         "workflow_aborted": {
 	    "id" : 5,
-            "class": "SpiffWorkflow.specs.Cancel.Cancel",
+            "class": "py_bpmn_engine.specs.Cancel.Cancel",
             "name": "workflow_aborted",
             "inputs": [
                 2,

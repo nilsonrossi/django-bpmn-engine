@@ -1,3 +1,35 @@
+[tool.poetry]
+name = "django-bpmn-engine"
+version = "0.1.0"
+description = ""
+authors = ["Nilson Rossi <nilsonrossi@hotmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+dateparser = "^1.1.1"
+lxml = "^4.9.1"
+pytz = "^2022.2.1"
+celery = "^5.2.7"
+Jinja2 = "^3.1.2"
+Django = "4.0"
+djangorestframework = "^3.13.1"
+psycopg2-binary = "^2.9.3"
+django-filter = "^22.1"
+drf-spectacular = "^0.23.1"
+python-json-logger = "^2.0.4"
+
+[tool.poetry.dev-dependencies]
+
+
+[tool.isort]
+force_single_line = true
+line_length = 120
+skip_glob = "**/migrations/*.py"
+use_parentheses = true
+multi_line_output = 5
+include_trailing_comma = true
+lines_between_types = 1
+
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta:__legacy__"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

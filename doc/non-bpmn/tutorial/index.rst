@@ -53,11 +53,11 @@ require a user input.
 
 .. literalinclude:: start.py
 
-:meth:`SpiffWorkflow.Workflow.complete_all` completes all tasks in
+:meth:`py_bpmn_engine.Workflow.complete_all` completes all tasks in
 accordance to the specification, until no further tasks are READY
 for being executed.
 Note that this does not mean that the workflow is completed after
-calling :meth:`SpiffWorkflow.Workflow.complete_all`, since some
+calling :meth:`py_bpmn_engine.Workflow.complete_all`, since some
 tasks may be WAITING, or may be blocked by another WAITING task,
 for example.
 
@@ -65,13 +65,13 @@ for example.
 Serializing a workflow
 ----------------------
 
-If you want to store a :class:`SpiffWorkflow.specs.WorkflowSpec`, you can
-use :meth:`SpiffWorkflow.specs.WorkflowSpec.serialize`:
+If you want to store a :class:`py_bpmn_engine.specs.WorkflowSpec`, you can
+use :meth:`py_bpmn_engine.specs.WorkflowSpec.serialize`:
 
 .. literalinclude:: serialize.py
 
-If you want to store a :class:`SpiffWorkflow.Workflow`, use
-use :meth:`SpiffWorkflow.Workflow.serialize`:
+If you want to store a :class:`py_bpmn_engine.Workflow`, use
+use :meth:`py_bpmn_engine.Workflow.serialize`:
 
 .. literalinclude:: serialize-wf.py
 
@@ -79,13 +79,13 @@ Deserializing a workflow
 ------------------------
 
 The following example shows how to restore a
-:class:`SpiffWorkflow.specs.WorkflowSpec` using
-:meth:`SpiffWorkflow.specs.WorkflowSpec.serialize`.
+:class:`py_bpmn_engine.specs.WorkflowSpec` using
+:meth:`py_bpmn_engine.specs.WorkflowSpec.serialize`.
 
 .. literalinclude:: deserialize.py
 
-To restore a :class:`SpiffWorkflow.Workflow`, use
-:meth:`SpiffWorkflow.Workflow.serialize` instead:
+To restore a :class:`py_bpmn_engine.Workflow`, use
+:meth:`py_bpmn_engine.Workflow.serialize` instead:
 
 .. literalinclude:: deserialize-wf.py
 
@@ -93,12 +93,12 @@ Where to go from here?
 ----------------------
 
 This first tutorial actually has a problem: If you want to save the workflow,
-SpiffWorkflow won't be able to re-connect the signals because it can not
+py_bpmn_engine won't be able to re-connect the signals because it can not
 save the reference to your code.
 
 So after deserializing the workflow, you will need to re-connect the signals
 yourself.
 
-If you would rather have it such that SpiffWorkflow handles this for you,
-you need to create a custom task and tell SpiffWorkflow how to
+If you would rather have it such that py_bpmn_engine handles this for you,
+you need to create a custom task and tell py_bpmn_engine how to
 serialize and deserialize it. The next tutorial shows how this is done.

@@ -1,4 +1,4 @@
-A More In-Depth Look at Some of SpiffWorkflow's Features
+A More In-Depth Look at Some of py_bpmn_engine's Features
 ========================================================
 
 Displaying Workflow State
@@ -36,7 +36,7 @@ correspond to which states).
 
 .. code:: python
 
-    from SpiffWorkflow.task import Task
+    from py_bpmn_engine.task import Task
 
 To get a list of completed tasks
 
@@ -44,7 +44,7 @@ To get a list of completed tasks
 
     tasks = workflow.get_tasks(Task.COMPLETED)
 
-The tasks themselves are not particularly intuitive to work with.  So SpiffWorkflow
+The tasks themselves are not particularly intuitive to work with.  So py_bpmn_engine
 provides some facilities for obtaining a more user-friendly version of upcoming tasks.
 
 Nav(igation) List
@@ -157,7 +157,7 @@ our diagram (although it is much easier to modify the BPMN diagram than to chang
 itself!).  Our shipping costs would not be static, but would depend on the size of the order and
 where it was being shipped -- maybe we'd query an API provided by our shipper.
 
-SpiffWorkflow is obviously **not** going to know how to make a call to **your** database or
+py_bpmn_engine is obviously **not** going to know how to make a call to **your** database or
 make API calls to **your** vendors.  However, you can implement the calls yourself and make them
 available as a method that can be used within a script task.
 
@@ -169,7 +169,7 @@ and just return the same static info for shipping for the purposes of the tutori
 
     from collections import namedtuple
 
-    from SpiffWorkflow.bpmn.PythonScriptEngine import PythonScriptEngine
+    from py_bpmn_engine.bpmn.PythonScriptEngine import PythonScriptEngine
 
     ProductInfo = namedtuple('ProductInfo', ['color', 'size', 'style', 'price'])
 
@@ -246,7 +246,7 @@ To accomplish this, we can import the serializer
 
 .. code:: python
 
-    from SpiffWorkflow.bpmn.serializer import BpmnWorkflowSerializer
+    from py_bpmn_engine.bpmn.serializer import BpmnWorkflowSerializer
 
 This class contains a serializer for a workflow containing only standard BPMN Tasks.  Since we are using custom task
 classes (the Camunda :code:`UserTask` and the DMN :code:`BusinessRuleTask`), we'll need to import serializers for those task s
@@ -254,8 +254,8 @@ pecs as well.
 
 .. code:: python
 
-    from SpiffWorkflow.camunda.serializer import UserTaskConverter
-    from SpiffWorkflow.dmn.serializer import BusinessRuleTaskConverter
+    from py_bpmn_engine.camunda.serializer import UserTaskConverter
+    from py_bpmn_engine.dmn.serializer import BusinessRuleTaskConverter
 
 Strictly speaking, these are not serializers per se: they actually convert the tasks into dictionaries of
 JSON-serializable objects.  Conversion to JSON is done only as the last step and could easily be replaced with some
@@ -315,7 +315,7 @@ To do extend ours:
 
 .. code:: python
 
-    from SpiffWorkflow.bpmn.serializer.dictionary import DictionaryConverter
+    from py_bpmn_engine.bpmn.serializer.dictionary import DictionaryConverter
 
     class MyDataConverter(DictionaryConverter):
 
@@ -330,8 +330,8 @@ To do extend ours:
             return MyClass(**dct)
 
 More information can be found in the class documentation for the
-`default converter <https://github.com/sartography/SpiffWorkflow/blob/main/SpiffWorkflow/bpmn/serializer/bpmn_converters.py>`_
-and its `base class <https://github.com/sartography/SpiffWorkflow/blob/main/SpiffWorkflow/bpmn/serializer/dictionary.py>`_
+`default converter <https://github.com/sartography/py_bpmn_engine/blob/main/py_bpmn_engine/bpmn/serializer/bpmn_converters.py>`_
+and its `base class <https://github.com/sartography/py_bpmn_engine/blob/main/py_bpmn_engine/bpmn/serializer/dictionary.py>`_
 .
 
 You can also replace ours entirely with one of your own.  If you do so, you'll need to implement `convert` and
@@ -341,11 +341,11 @@ latter should recreate your data from the serialization.
 If you have written any custom task specs, you'll need to implement task spec converters for those as well.
 
 Task Spec converters are also based on the :code:`DictionaryConverter`.  You should be able to use the
-`BpmnTaskSpecConverter <https://github.com/sartography/SpiffWorkflow/blob/main/SpiffWorkflow/bpmn/serializer/bpmn_converters.py>`_
+`BpmnTaskSpecConverter <https://github.com/sartography/py_bpmn_engine/blob/main/py_bpmn_engine/bpmn/serializer/bpmn_converters.py>`_
 as a basis for your custom specs.  It provides some methods for extracting attributes from Spiff base classes as well as 
 standard BPNN attributes from tasks that inherit from :code:`BMPNSpecMixin`.
 
-The `Camunda User Task Converter <https://github.com/sartography/SpiffWorkflow/blob/main/SpiffWorkflow/camunda/serializer/task_spec_converters.py>`_
+The `Camunda User Task Converter <https://github.com/sartography/py_bpmn_engine/blob/main/py_bpmn_engine/camunda/serializer/task_spec_converters.py>`_
 should provide a simple example of how you might create such a converter.
 
 Migrating Between Serialization Versions
@@ -388,7 +388,7 @@ The code would then look more like this:
 
 .. code:: python
 
-    from SpiffWorkflow.camunda.serializer import UserTaskConverter
+    from py_bpmn_engine.camunda.serializer import UserTaskConverter
 
     old_serializer = BpmnSerializer() # the deprecated serializer.
 
@@ -420,4 +420,4 @@ new 1.1 format.
 
 If you've overridden the serializer version, you may need to incorporate our serialization changes with
 your own.  You can find our conversions in 
-`version_migrations.py <https://github.com/sartography/SpiffWorkflow/blob/main/SpiffWorkflow/bpmn/serializer/version_migration.py>`_
+`version_migrations.py <https://github.com/sartography/py_bpmn_engine/blob/main/py_bpmn_engine/bpmn/serializer/version_migration.py>`_

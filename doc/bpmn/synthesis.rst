@@ -11,9 +11,9 @@ We'll need the following imports:
 
 .. code:: python
 
-    from SpiffWorkflow.bpmn.workflow import BpmnWorkflow
-    from SpiffWorkflow.camunda.parser.CamundaParser import CamundaParser
-    from SpiffWorkflow.dmn.parser.BpmnDmnParser import BpmnDmnParser
+    from py_bpmn_engine.bpmn.workflow import BpmnWorkflow
+    from py_bpmn_engine.camunda.parser.CamundaParser import CamundaParser
+    from py_bpmn_engine.dmn.parser.BpmnDmnParser import BpmnDmnParser
 
     from custom_script_engine import CustomScriptEngine
 
@@ -38,7 +38,7 @@ Task parser will override the default parser.
 
 In general, any task parser can be replaced with a custom parser of your
 own design if you have a BPMN modeller that produces XML not handled by the
-BPMN parsers in SpiffWorkflow.
+BPMN parsers in py_bpmn_engine.
 
 .. code:: python
 
@@ -123,14 +123,14 @@ section following this one.
         print(json.dumps(workflow.data, indent=2, separators=[ ', ', ': ' ]))
 
 The first line of this function is the one that does the bulk of the work in
-SpiffWorkflow.  Calling :code:`workflow.do_engine_steps()` causes Spiff to repeatedly
+py_bpmn_engine.  Calling :code:`workflow.do_engine_steps()` causes Spiff to repeatedly
 look for and execute any engine tasks that are ready.
 
 An **engine task** does not require user interaction. For instance, it could be
 a Script task or selection of a flow from a gateway.  Execution will
 stop when only interactive tasks remain or the workflow is completed.
 
-A SpiffWorkflow application will call :code:`workflow.do_engine_steps()` to start the
+A py_bpmn_engine application will call :code:`workflow.do_engine_steps()` to start the
 workflow and then enter a loop that will
 
 - check for ready user tasks
@@ -149,7 +149,7 @@ The rest of the code is all about presenting the tasks to the user and dumping t
 workflow state.  We've covered former in the BPMN Elements section of :doc:`index`
 and will cover the latter in :doc:`advanced`.
 
-Handling task presentation is what **you** will be developing when you use SpiffWorkflow.
+Handling task presentation is what **you** will be developing when you use py_bpmn_engine.
 
 Examining the Workflow State
 ----------------------------

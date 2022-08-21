@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'SpiffWorkflow'
+project = 'py_bpmn_engine'
 copyright = '2022, Sartography'
 author = 'Sartography'
 

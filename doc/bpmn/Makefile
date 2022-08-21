@@ -16,7 +16,7 @@ help:
 
 .PHONY: apidoc
 apidoc:
-	sphinx-apidoc -d5 -Mefo . ../venv/lib/python3.7/site-packages/SpiffWorkflow
+	sphinx-apidoc -d5 -Mefo . ../venv/lib/python3.7/site-packages/py_bpmn_engine
 
 
 # Catch-all target: route all unknown targets to Sphinx using the new

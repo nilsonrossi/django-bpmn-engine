@@ -1,5 +1,5 @@
-from SpiffWorkflow.specs import WorkflowSpec, ExclusiveChoice, Simple, Cancel
-from SpiffWorkflow.operators import Equal, Attrib
+from py_bpmn_engine.specs import WorkflowSpec, ExclusiveChoice, Simple, Cancel
+from py_bpmn_engine.operators import Equal, Attrib
 
 def my_nuclear_strike(msg):
     print("Launched:", msg)
