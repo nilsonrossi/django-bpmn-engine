@@ -1,7 +1,7 @@
 Overview
 ========
 
-BPMN and SpiffWorkflow
+BPMN and py_bpmn_engine
 ----------------------
 
 .. sidebar:: BPMN Resources
@@ -20,24 +20,24 @@ creates a common process language that can be shared between the two.
 
 BPMN describes details of process behaviors efficiently in a diagram. The
 meaning is precise enough to describe the technical details that control
-process execution in an automation engine. SpiffWorkflow allows you to create
+process execution in an automation engine. py_bpmn_engine allows you to create
 code to directly execute a BPMN diagram.
 
-When using SpiffWorkflow, a client can manipulate the BPMN diagram and still
+When using py_bpmn_engine, a client can manipulate the BPMN diagram and still
 have their product work without a need for you to edit the Python code,
 improving response and turnaround time.
 
 Today, nearly every process modeling tool supports BPMN in some fashion making
 it a great tool to learn and use.
 
-To use SpiffWorkflow, you need at least a basic understanding of BPMN.
+To use py_bpmn_engine, you need at least a basic understanding of BPMN.
 This page offers a brief overview. There are many resources for additional
 information about BPMN.
 
 .. sidebar:: BPMN Modelers
 
   There are a number of modelers in existence, and any BPMN compliant modeler should work.
-  SpiffWorkflow has some basic support for the free Camunda modeler, to use it's form building
+  py_bpmn_engine has some basic support for the free Camunda modeler, to use it's form building
   capabilities, but we intend to encapsulate this support in an extension module and remove
   it from the core library eventually.  It does help for making some examples and demonstrating
   how one might implement user tasks in an online environment.
@@ -93,7 +93,7 @@ have direct connections between tasks.  We need to handle the cases where an eve
 may or may not happen and link these events in different parts of the workflow.
 
 BPMN has a comprehensive suite of event elements that can used for this purpose.
-SpiffWorkflow does not support every single BPMN event type, but it can handle
+py_bpmn_engine does not support every single BPMN event type, but it can handle
 many of them.
 
 .. figure:: figures/events.png

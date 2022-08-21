@@ -1,7 +1,7 @@
 BPMN Workflows
 ==============
 
-The basic idea of SpiffWorkflow is that you can use it to write an interpreter 
+The basic idea of py_bpmn_engine is that you can use it to write an interpreter 
 in Python that creates business applications from BPMN models.  In this section,
 we'll develop a model of an example process and as well as a
 simple workflow runner.
@@ -12,10 +12,10 @@ We expect that readers will fall into two general categories:
 - Python developers who might not know much about BPMN
 
 This section of the documentation provides an example that (hopefully) serves 
-the needs of both groups.  We will introduce the BPMN elements that SpiffWorkflow 
+the needs of both groups.  We will introduce the BPMN elements that py_bpmn_engine 
 supports and show how to build a simple workflow runner around them.
 
-SpiffWorkflow does heavy-lifting such as keeping track of task dependencies and
+py_bpmn_engine does heavy-lifting such as keeping track of task dependencies and
 states and providing the ability to serialize or deserialize a workflow that
 has not been completed.  The developer will write code for displaying workflow
 state and presenting tasks to users of their application.

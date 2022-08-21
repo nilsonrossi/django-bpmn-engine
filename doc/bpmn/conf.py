@@ -18,7 +18,7 @@ numfig = True
 
 # -- Project information -----------------------------------------------------
 
-project = 'SpiffWorkflow-BPMN Documentation'
+project = 'py_bpmn_engine-BPMN Documentation'
 copyright = '2020, Sartography'
 author = 'Sartography'
 

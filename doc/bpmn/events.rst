@@ -16,7 +16,7 @@ We'll be using the following files from `spiff-example-cli <https://github.com/s
 A general overview of events in BPMN can be found in the :doc:`/intro`
 section of the documentation.
 
-SpiffWorkflow supports the following Event Definitions:
+py_bpmn_engine supports the following Event Definitions:
 
 - `Cancel Events`_
 - `Signal Events`_
@@ -119,7 +119,7 @@ them for feedback about it (we know it wasn't completed), so we do not want to
 execute either of those tasks.
 
 We'll now modify our workflow to add an example of each of the other types of
-events that SpiffWorkflow Supports.
+events that py_bpmn_engine Supports.
 
 To run this workflow
 
@@ -213,10 +213,10 @@ Message Events
 
    Ideally, this lane would be a process independent from the ordering process (we don't want
    it to be cancelled just because an order eventually completes).  However, limitations of how
-   SpiffWorkflow handles processes precludes multiple top-level processes.
+   py_bpmn_engine handles processes precludes multiple top-level processes.
 
 In BPMN, Messages are used to communicate across processes and cannot be used within a
-workflow, but SpiffWorkflow allows message communication between lanes as well as between
+workflow, but py_bpmn_engine allows message communication between lanes as well as between
 parent and child workflows.  We'll use the first scenario in our example.
 
 We've added a QA lane to out ordering process, whose job is investigating order order delays
@@ -246,7 +246,7 @@ We can provide a name for the result variable, but I have not done that here, as
 make sense to me for the generator of the event to tell the handler what to call the value.
 If you *do* specify a result variable, the message payload (the expression evaluated in the
 context of the Throwing task) will be added to the handling task's data in a variable of that
-name; if you leave it blank, SpiffWorkflow will create a variable of the form <Handling
+name; if you leave it blank, py_bpmn_engine will create a variable of the form <Handling
 Task Name>_Response.
 
 Running The Model

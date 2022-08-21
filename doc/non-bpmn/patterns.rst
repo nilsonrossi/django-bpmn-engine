@@ -5,7 +5,7 @@ Supported Workflow Patterns
 
 .. HINT::
    All examples are located
-   `here <https://github.com/knipknap/SpiffWorkflow/blob/master/tests/SpiffWorkflow/data/spiff/>`_.
+   `here <https://github.com/knipknap/py_bpmn_engine/blob/master/tests/py_bpmn_engine/data/spiff/>`_.
 
 Control-Flow Patterns
 ---------------------

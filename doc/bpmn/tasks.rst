@@ -5,7 +5,7 @@ BPMN Model
 ----------
 
 In this example, we'll model a customer selecting a product to illustrate
-the basic task types that can be used with SpiffWorkflow.
+the basic task types that can be used with py_bpmn_engine.
 
 We'll be using the following files from `spiff-example-cli <https://github.com/sartography/spiff-example-cli>`_.
 
@@ -34,7 +34,7 @@ The following example shows how a form might be set up in Camumda.
 
 .. note::
 
-  SpiffWorkflow has some basic support for the free Camunda modeler, to use its
+  py_bpmn_engine has some basic support for the free Camunda modeler, to use its
   form building capabilities, but we intend to encapsulate this support in an
   extension module and remove it from the core library eventually.
 
@@ -57,7 +57,7 @@ and maintain it in a table format. DMN is linked into BPMN with a *decision
 task*.
 
 With DMN, business analysts can model the rules that lead to a decision
-in an easy to read table. Those tables can be executed directly by SpiffWorkflow.
+in an easy to read table. Those tables can be executed directly by py_bpmn_engine.
 
 This minimizes the risk of misunderstandings between business analysts and
 developers, and allows rapid changes in production.
@@ -182,7 +182,7 @@ Handling Business Rule Tasks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We do not need to do any special configuration to handle these business rule
-tasks.  SpiffWorkflow does it all for us.
+tasks.  py_bpmn_engine does it all for us.
 
 Handling Script Tasks
 ^^^^^^^^^^^^^^^^^^^^^

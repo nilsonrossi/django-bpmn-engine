@@ -1,25 +1,25 @@
-.. image:: https://travis-ci.com/sartography/SpiffWorkflow.svg?branch=master
-    :target: https://travis-ci.org/sartography/SpiffWorkflow
+.. image:: https://travis-ci.com/sartography/py_bpmn_engine.svg?branch=master
+    :target: https://travis-ci.org/sartography/py_bpmn_engine
 
-.. image:: https://sonarcloud.io/api/project_badges/measure?project=sartography_SpiffWorkflow&metric=alert_status
-    :target: https://sonarcloud.io/dashboard?id=sartography_SpiffWorkflow
+.. image:: https://sonarcloud.io/api/project_badges/measure?project=sartography_py_bpmn_engine&metric=alert_status
+    :target: https://sonarcloud.io/dashboard?id=sartography_py_bpmn_engine
 
-.. image:: https://sonarcloud.io/api/project_badges/measure?project=sartography_SpiffWorkflow&metric=coverage
-    :target: https://sonarcloud.io/dashboard?id=sartography_SpiffWorkflow
+.. image:: https://sonarcloud.io/api/project_badges/measure?project=sartography_py_bpmn_engine&metric=coverage
+    :target: https://sonarcloud.io/dashboard?id=sartography_py_bpmn_engine
     :alt: Coverage
 
-.. image:: https://img.shields.io/github/stars/sartography/SpiffWorkflow.svg
-    :target: https://github.com/sartography/SpiffWorkflow/stargazers
+.. image:: https://img.shields.io/github/stars/sartography/py_bpmn_engine.svg
+    :target: https://github.com/sartography/py_bpmn_engine/stargazers
 
-.. image:: https://img.shields.io/github/license/sartography/SpiffWorkflow.svg
-    :target: https://github.com/sartography/SpiffWorkflow/blob/master/COPYING
+.. image:: https://img.shields.io/github/license/sartography/py_bpmn_engine.svg
+    :target: https://github.com/sartography/py_bpmn_engine/blob/master/COPYING
 
-What is SpiffWorkflow?
+What is py_bpmn_engine?
 ======================
 .. image:: images/logo.png
     :align: center
 
-SpiffWorkflow allows your python application to process BPMN diagrams (think
+py_bpmn_engine allows your python application to process BPMN diagrams (think
 of them as very powerful flow charts,  See :doc:`intro`.) to accomplish
 what would otherwise require writing a lot of complex business logic in your
 code. You can use these diagrams to accomplish a number of tasks, such as:
@@ -38,7 +38,7 @@ Support
 -------
 You can find us on `our Discord Channel <https://discord.gg/zDEBEnrF>`_
 
-Commercial support for SpiffWorkflow is available from
+Commercial support for py_bpmn_engine is available from
 `Sartography <https://sartography.com>`_
 
 

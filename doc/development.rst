@@ -1,12 +1,12 @@
-SpiffWorkflow Concepts
+py_bpmn_engine Concepts
 ====================================
 
 Specification vs. Workflow Instance
 -----------------------------------
 
-One critical concept to know about SpiffWorkflow is the difference between a
-:class:`SpiffWorkflow.specs.WorkflowSpec` and :class:`SpiffWorkflow.Workflow` and
-the difference between a :class:`SpiffWorkflow.specs.TaskSpec` and :class:`SpiffWorkflow.Task`.
+One critical concept to know about py_bpmn_engine is the difference between a
+:class:`py_bpmn_engine.specs.WorkflowSpec` and :class:`py_bpmn_engine.Workflow` and
+the difference between a :class:`py_bpmn_engine.specs.TaskSpec` and :class:`py_bpmn_engine.Task`.
 
 In order to understand how to handle a running workflow consider the following process::
 
@@ -65,7 +65,7 @@ Internal Details
 ----------------
 
 A **derivation tree** is created based off of the spec using a hierarchy of
-:class:`SpiffWorkflow.Task` objects (not :class:`SpiffWorkflow.specs.TaskSpec` objects!).
+:class:`py_bpmn_engine.Task` objects (not :class:`py_bpmn_engine.specs.TaskSpec` objects!).
 Each Task contains a reference to the TaskSpec that generated it.
 
 Think of a derivation tree as tree of execution paths (some, but not all, of
@@ -82,9 +82,9 @@ There's a decent eventing model that allows you to tie in to and receive
 events (for each task, you can get event notifications from its TaskSpec).
 The events correspond with how the processing is going in the derivation
 tree, not necessarily how the workflow as a whole is moving.
-See :class:`SpiffWorkflow.specs.TaskSpec` for docs on events.
+See :class:`py_bpmn_engine.specs.TaskSpec` for docs on events.
 
-You can nest workflows (using the :class:`SpiffWorkflow.specs.SubWorkflowSpec`).
+You can nest workflows (using the :class:`py_bpmn_engine.specs.SubWorkflowSpec`).
 
 The serialization code is done well which makes it easy to add new formats
 if we need to support them.
@@ -96,4 +96,4 @@ Other documentation
 **API documentation** is currently embedded into the Spiff Workflow source code and not yet made available in a prettier form.
 
 If you need more help, please create an issue in our
-`issue tracker <https://github.com/knipknap/SpiffWorkflow/issues>`_.
+`issue tracker <https://github.com/knipknap/py_bpmn_engine/issues>`_.

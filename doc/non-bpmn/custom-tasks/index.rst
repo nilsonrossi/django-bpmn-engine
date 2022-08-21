@@ -14,10 +14,10 @@ We are also assuming that you are familiar with the :doc:`../basics`.
 Implementing the custom task
 ----------------------------
 
-The first step is to create a :class:`SpiffWorkflow.specs.TaskSpec` that
+The first step is to create a :class:`py_bpmn_engine.specs.TaskSpec` that
 fires the rocket::
 
-    from SpiffWorkflow.specs import Simple
+    from py_bpmn_engine.specs import Simple
 
     class NuclearStrike(Simple):
         def _on_complete_hook(self, my_task):
@@ -26,16 +26,16 @@ fires the rocket::
 Save this file as ``strike.py``.
 
 Now, before we are ready to define the workflow using XML or JSON, we will
-also have extend the serializer to let SpiffWorkflow know how to represent
+also have extend the serializer to let py_bpmn_engine know how to represent
 your NuclearStrike first.
 
 Preparing a serializer
 ----------------------
 
 Before we can use JSON to specify a workflow, we first need to teach
-SpiffWorkflow what our custom `NuclearChoice` looks like in JSON.
+py_bpmn_engine what our custom `NuclearChoice` looks like in JSON.
 We do this by extending the
-:mod:`SpiffWorkflow.serializer.json.JSONSerializer`.
+:mod:`py_bpmn_engine.serializer.json.JSONSerializer`.
 
 .. literalinclude:: serializer.py
 

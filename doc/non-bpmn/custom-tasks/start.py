@@ -1,6 +1,6 @@
 import json
-from SpiffWorkflow import Workflow
-from SpiffWorkflow.specs import WorkflowSpec
+from py_bpmn_engine import Workflow
+from py_bpmn_engine.specs import WorkflowSpec
 from serializer import NuclearSerializer
 
 # Load from JSON

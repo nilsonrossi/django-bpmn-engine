@@ -56,7 +56,7 @@ it does not matter what order our Employee retrieves the products in.
    MultiInstance task configuration
 
 Spiff will generate a task for each of the items in the collection.  Because of the way
-SpiffWorkflow manages the data for these tasks, the collection MUST be a dictionary.
+py_bpmn_engine manages the data for these tasks, the collection MUST be a dictionary.
 
 Each value in the dictionary will be copied into a variable with the name specified in
 the 'Element Variable' field, so you'll need to specify this as well.
@@ -86,17 +86,17 @@ availability.
 
    In our form configuration, we used `product.product_available` but when we reference
    it in the flow, we use the standard python dictionary syntax.  We can't use that
-   notation in form fields, so in this case we need to use SpiffWorkflow's dot notation
+   notation in form fields, so in this case we need to use py_bpmn_engine's dot notation
    conversion.
 
 Sequential MultiInstance
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-SpiffWorkflow also supports Sequential MultiInstance Tasks for previously defined
+py_bpmn_engine also supports Sequential MultiInstance Tasks for previously defined
 collections, or if the loopCardinality is known in advance, although we have not added an
 example of this to our workflow.
 
-For more information about MultiInstance Tasks and SpiffWorkflow, see :doc:`/bpmn/advanced`.
+For more information about MultiInstance Tasks and py_bpmn_engine, see :doc:`/bpmn/advanced`.
 
 Running The Model
 ^^^^^^^^^^^^^^^^^

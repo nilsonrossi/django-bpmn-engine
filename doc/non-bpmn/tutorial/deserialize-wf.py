@@ -1,5 +1,5 @@
-from SpiffWorkflow import Workflow
-from SpiffWorkflow.serializer.json import JSONSerializer
+from py_bpmn_engine import Workflow
+from py_bpmn_engine.serializer.json import JSONSerializer
 
 serializer = JSONSerializer()
 with open('workflow.json') as fp:

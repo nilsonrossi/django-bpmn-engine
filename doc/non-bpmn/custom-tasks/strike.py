@@ -1,4 +1,4 @@
-from SpiffWorkflow.specs import Simple
+from py_bpmn_engine.specs import Simple
 
 class NuclearStrike(Simple):
     def _on_complete_hook(self, my_task):
