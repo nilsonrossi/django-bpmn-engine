@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 
+from distutils.util import strtobool
 from logging import Formatter
 from pathlib import Path
 
@@ -28,10 +29,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&huv7y758bzld4(_ap)dz@7dja*6r&vyxdgacp7ok4whq@yx1('
+SECRET_KEY = "django-insecure-&huv7y758bzld4(_ap)dz@7dja*6r&vyxdgacp7ok4whq@yx1("
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = strtobool(os.getenv("DJANGO_DEBUG", "False"))
 
 # CORS
 DJANGO_ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS")
@@ -45,48 +46,53 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # "jazzmin",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
     "django_filters",
+    "django_celery_beat",
+    "django_celery_results",
     "rest_framework",
     "rest_framework.authtoken",
     "drf_spectacular",
-    CoreConfig.name
+    "cacheops",
+    "django_jsonform",
+    CoreConfig.name,
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'django_bpmn_engine.urls'
+ROOT_URLCONF = "django_bpmn_engine.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'django_bpmn_engine.wsgi.application'
+WSGI_APPLICATION = "django_bpmn_engine.wsgi.application"
 
 
 # Database
@@ -112,26 +118,46 @@ DATABASES["default"]["CONN_MAX_AGE"] = int(os.getenv("DB_CONN_MAX_AGE", 0))  # t
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://redis:6379",
+    }
+}
+
+REDIS_PASSWORD = os.getenv("REDIS_PASSWORD")
+CACHEOPS_REDIS = f"redis://:{REDIS_PASSWORD}@redis:6379/2"
+CACHEOPS = {
+    "core.servicetaskevent": {"ops": {"fetch", "get"}, "timeout": 60 * 10},
+    "core.messagetaskevent": {"ops": {"fetch", "get"}, "timeout": 60 * 10},
+    "django_celery_beat.intervalschedule": {
+        "ops": {"fetch", "get"},
+        "timeout": 60 * 10,
+    },
+    "django_celery_beat.periodictask": {"ops": {"fetch", "get"}, "timeout": 60 * 10},
+    "*.*": {"timeout": 60 * 10},
+}
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -141,7 +167,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "/static/"
+
+# Logs
+
+ROOT_LOG_LEVEL = os.getenv("ROOT_LOG_LEVEL", "INFO")
+PROJECT_LOG_LEVEL = os.getenv("PROJECT_LOG_LEVEL", "INFO")
+DJANGO_LOG_LEVEL = os.getenv("DJANGO_LOG_LEVEL", "INFO")
+DJANGO_REQUEST_LOG_LEVEL = os.getenv("DJANGO_REQUEST_LOG_LEVEL", "INFO")
+DJANGO_DB_BACKENDS_LOG_LEVEL = os.getenv("DJANGO_DB_BACKENDS_LOG_LEVEL", "INFO")
+STOMP_LOG_LEVEL = os.getenv("STOMP_LOG_LEVEL", "WARNING")
 
 # Logging
 LOGGING = {
@@ -152,7 +187,10 @@ LOGGING = {
             "()": JsonFormatter,
             "format": "%(levelname)-8s [%(asctime)s] [%(request_id)s] %(name)s: %(message)s",
         },
-        "development": {"()": Formatter, "format": "%(asctime)s - level=%(levelname)s - %(name)s - %(message)s"},
+        "development": {
+            "()": Formatter,
+            "format": "%(asctime)s - level=%(levelname)s - %(name)s - %(message)s",
+        },
     },
     "handlers": {
         "console": {
@@ -163,7 +201,11 @@ LOGGING = {
     },
     "loggers": {
         "": {"level": os.getenv("ROOT_LOG_LEVEL", "INFO"), "handlers": ["console"]},
-        "django": {"level": os.getenv("DJANGO_LOG_LEVEL", "INFO"), "propagate": False, "handlers": ["console"]},
+        "django": {
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": False,
+            "handlers": ["console"],
+        },
         "django.request": {
             "level": os.getenv("DJANGO_REQUEST_LOG_LEVEL", "INFO"),
             "handlers": ["console"],
@@ -174,7 +216,11 @@ LOGGING = {
             "propagate": False,
             "handlers": ["console"],
         },
-        "stomp.py": {"level": os.getenv("STOMP_LOG_LEVEL", "WARNING"), "handlers": ["console"], "propagate": False},
+        "stomp.py": {
+            "level": os.getenv("STOMP_LOG_LEVEL", "WARNING"),
+            "handlers": ["console"],
+            "propagate": False,
+        },
     },
 }
 
@@ -191,6 +237,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.TokenAuthentication",
@@ -201,4 +248,14 @@ REST_FRAMEWORK = {
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Celery Configuration Options
+CELERY_BROKER_URL = "amqp://guest:guest@rabbitmq:5672/"
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_TIMEZONE = "America/Sao_Paulo"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_CACHE_BACKEND = "default"
+CELERY_RESULT_BACKEND = "django-db"

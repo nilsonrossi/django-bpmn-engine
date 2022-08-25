@@ -1,3 +1,10 @@
 {
-    "makefile.extensionOutputFolder": "./.vscode"
+    "editor.rulers": [
+        120
+    ],
+    "python.autoComplete.extraPaths": [
+        "django-bpmn-engine"
+    ],
+    "python.languageServer": "Pylance",
+    "python.analysis.indexing": true
 }

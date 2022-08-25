@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0lsisq2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+  <bpmn:process id="timer_message" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1hlyck8</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1hlyck8" sourceRef="StartEvent_1" targetRef="timer1" />
+    <bpmn:sequenceFlow id="Flow_0afgt0y" sourceRef="timer1" targetRef="message1" />
+    <bpmn:sequenceFlow id="Flow_1i78jly" sourceRef="message1" targetRef="timer2" />
+    <bpmn:endEvent id="Event_0b44gd6">
+      <bpmn:incoming>Flow_0rfsuh3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0rfsuh3" sourceRef="timer2" targetRef="Event_0b44gd6" />
+    <bpmn:intermediateCatchEvent id="timer1">
+      <bpmn:incoming>Flow_1hlyck8</bpmn:incoming>
+      <bpmn:outgoing>Flow_0afgt0y</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1e453of">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">timedelta(seconds=5)</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:intermediateCatchEvent id="message1">
+      <bpmn:incoming>Flow_0afgt0y</bpmn:incoming>
+      <bpmn:outgoing>Flow_1i78jly</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0ugk0hb" messageRef="Message_36mlku6" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:intermediateCatchEvent id="timer2">
+      <bpmn:incoming>Flow_1i78jly</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rfsuh3</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1ekxwt9">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">timedelta(seconds=5)</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+  </bpmn:process>
+  <bpmn:message id="Message_36mlku6" name="event_test" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="timer_message">
+      <bpmndi:BPMNEdge id="Flow_1hlyck8_di" bpmnElement="Flow_1hlyck8">
+        <di:waypoint x="215" y="97" />
+        <di:waypoint x="312" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0afgt0y_di" bpmnElement="Flow_0afgt0y">
+        <di:waypoint x="348" y="97" />
+        <di:waypoint x="452" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1i78jly_di" bpmnElement="Flow_1i78jly">
+        <di:waypoint x="488" y="97" />
+        <di:waypoint x="592" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rfsuh3_di" bpmnElement="Flow_0rfsuh3">
+        <di:waypoint x="628" y="97" />
+        <di:waypoint x="732" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="79" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0b44gd6_di" bpmnElement="Event_0b44gd6">
+        <dc:Bounds x="732" y="79" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_122gadd_di" bpmnElement="timer1">
+        <dc:Bounds x="312" y="79" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0l109ii_di" bpmnElement="message1">
+        <dc:Bounds x="452" y="79" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_15n7eq3_di" bpmnElement="timer2">
+        <dc:Bounds x="592" y="79" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

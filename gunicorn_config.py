@@ -47,8 +47,16 @@ logconfig_dict = {
         "error_console": {"class": "logging.StreamHandler", "formatter": "standard"},
     },
     "loggers": {
-        "gunicorn.error": {"handlers": ["error_console"], "level": "INFO", "propagate": False},
-        "gunicorn.access": {"handlers": ["console"], "level": "INFO", "propagate": False},
+        "gunicorn.error": {
+            "handlers": ["error_console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "gunicorn.access": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
     },
 }
 

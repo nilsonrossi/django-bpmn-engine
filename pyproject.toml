@@ -9,7 +9,6 @@ python = "^3.10"
 dateparser = "^1.1.1"
 lxml = "^4.9.1"
 pytz = "^2022.2.1"
-celery = "^5.2.7"
 Jinja2 = "^3.1.2"
 Django = "4.0"
 djangorestframework = "^3.13.1"
@@ -17,6 +16,12 @@ psycopg2-binary = "^2.9.3"
 django-filter = "^22.1"
 drf-spectacular = "^0.23.1"
 python-json-logger = "^2.0.4"
+spiffworkflow = {git = "https://github.com/sartography/SpiffWorkflow", rev = "main"}
+celery = "^5.2.7"
+django-celery-results = "^2.4.0"
+django-celery-beat = "^2.3.0"
+django-cacheops = "^6.1"
+django-jsonform = "^2.12.0"
 
 [tool.poetry.dev-dependencies]
 

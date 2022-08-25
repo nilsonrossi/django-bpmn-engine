@@ -16,7 +16,10 @@ class Command(BaseCommand):
         self.admin_password = options["p"].strip()
 
         if self.create_super_user:
-            if get_user_model().objects.filter(username=self.admin_username).count() == 0:
+            if (
+                get_user_model().objects.filter(username=self.admin_username).count()
+                == 0
+            ):
                 self.stdout.write(f"Creating ADMIN username {self.admin_username}")
                 _create_super_user(self.admin_username, self.admin_password)
             else:

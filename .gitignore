@@ -264,6 +264,9 @@ cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,intellij+all,macos
 
+### VisualStudioCode ###
+.vscode/
+
 *.py[co]
 *.swp
 dist
